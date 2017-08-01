@@ -25,7 +25,8 @@ import oracle.jdbc.OracleDriver;
 public class DBUtils {
 
 	// Oracle Database 11.2.0.4.0 and Oracle Database 12.2.0.1
-	private static final String URL = "jdbc:oracle:thin:@119.28.128.29:1521/orcl";
+//	private static final String URL = "jdbc:oracle:thin:@119.28.128.29:1521/orcl";
+	private static final String URL = "jdbc:oracle:thin:@localhost:1521/orcl";
 	
 	// Oracle Database 11.2.0.4.0
 //	private static final String URL = "jdbc:oracle:thin:@119.28.128.29:1521:orcl";

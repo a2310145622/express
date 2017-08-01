@@ -47,14 +47,13 @@
 }
 </style>
 </head>
-
 <script type="text/javascript">  
 var pwd;
 var cpwd;
 function validate() {  
     pwd = document.getElementById("inputPassword");
     cpwd = document.getElementById("confirmPassword");
-    warning = document.getElementById("warning");
+    warning = document.getElementById("warning2");
 //    window.location.href = 'www.baidu.com';
     if(pwd.value==cpwd.value)
     	warning.innerHTML="<font color=green >两次输入密码相同</font>";
@@ -62,12 +61,30 @@ function validate() {
 		warning.innerHTML="<font color=red >两次输入密码不相同</font>";
 }
 
-function clickuname() {
-    //获得表单内容并转发
-    var doc = document.getElementById("document");
-    doc.action = "clickuname";
-    doc.method = "post";
-    doc.submit(); 
+
+function check(uname) {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("warning1").innerHTML=xmlhttp.responseText;
+		}
+	}
+	var post ="uname=" + uname;
+	xmlhttp.open("POST","check",true);
+	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xmlhttp.send(post);
 }
 
 //function click1() {
@@ -87,14 +104,15 @@ function clickuname() {
 				placeholder="用户id" autofocus="">
 			<label for="inputuname" class="sr-only">user name</label>
 			<input type="text" id="inputuname" name="uname" class="form-control"
-				placeholder="用户名" required="" autofocus="" onchange="clickuname"> 
+				placeholder="用户名" required="" autofocus="" onchange="check(this.value)">
+			<span id="warning1"></span>
 			<label for="inputPassword" class="sr-only">Password</label>
 			<input type="password" id="inputPassword" name="pwd" class="form-control"
-				placeholder="输入密码" required="">
-			<label for="inputPassword" class="sr-only">Password</label>
+				placeholder="输入密码" required="" onchange="validate()">
+			<label for="confirmPassword" class="sr-only">Password</label>
 			<input type="password" id="confirmPassword" name="cpwd" class="form-control"
 				placeholder="确认密码" required="" onchange="validate()">
-			<span id="warning"></span>
+			<span id="warning2"></span>
 			<label for="inputage" class="sr-only">age</label>
 			<input type="text" id="inputage" name="age" class="form-control"
 				placeholder="年龄" autofocus="">

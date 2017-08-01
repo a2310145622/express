@@ -104,6 +104,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 					} else {
 				%>
 				<li><a href="login.jsp">登录</a></li>
+				<li><a href="register.jsp">注册</a></li>
 				<%
 					}
 				%>
