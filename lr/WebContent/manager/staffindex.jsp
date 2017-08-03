@@ -79,7 +79,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="../main.jsp">返回前台</a></li>
+				<li><a href="../home">返回前台</a></li>
 <!-- 				<li><a href="#about">About</a></li> -->
 <!-- 				<li><a href="#contact">Contact</a></li> -->
 <!-- 				<li class="dropdown"><a href="#" class="dropdown-toggle" -->
