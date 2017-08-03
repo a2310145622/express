@@ -2,26 +2,26 @@
 	pageEncoding="UTF-8" import="java.net.URLDecoder"%>
 <%
 	Cookie[] cookies = request.getCookies();
-	String sid = null;
-	String spwd = null;
+	String cid = null;
+	String cpwd = null;
 
-	if (session.getAttribute("sid_in_session") == null) {
+	if (session.getAttribute("cid_in_session") == null) {
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				String id = cookies[i].getName();
 				String pwd = cookies[i].getName();
-				if ("sid".equals(id)) {
+				if ("cid".equals(id)) {
 					//如果是中文，cookies需要解码
-					sid = URLDecoder.decode(cookies[i].getValue(), "utf-8");
-				} else if ("spwd".equals(pwd)) {
-					spwd = cookies[i].getValue();
+					cid = URLDecoder.decode(cookies[i].getValue(), "utf-8");
+				} else if ("cpwd".equals(pwd)) {
+					cpwd = cookies[i].getValue();
 				}
 			}
 		}
 		//当用户名和密码不为空时，自动登录
-		if ((sid != null && !("".equals(sid))) && (spwd != null && !("".equals(spwd)))) {
-			session.setAttribute("sid_in_session", sid);
-			session.setAttribute("spwd_in_session", spwd);
+		if ((cid != null && !("".equals(cid))) && (cpwd != null && !("".equals(cpwd)))) {
+			session.setAttribute("cid_in_session", cid);
+			session.setAttribute("cpwd_in_session", cpwd);
 			response.sendRedirect("login");//get请求
 		}
 	} else
@@ -91,12 +91,12 @@
 
 		<form class="form-signin" action="login" method="post">
 			<h2 class="form-signin-heading">请登录</h2>
-			<label for="inputstid" class="sr-only">账号</label> <input
-				type="text" id="inputstid" name="sid" class="form-control"
-				placeholder="账号" required="" autofocus=""> <label
-				for="inputspwd" class="sr-only">密码</label> <input
-				type="password" id="inputspwd" name="spwd" class="form-control"
-				placeholder="密码" required="">
+			<label for="inputcid" class="sr-only">账号</label>
+			<input type="text" id="inputcid" name="cid" class="form-control"
+				   placeholder="账号" required="" autofocus="">
+			<label for="inputcpwd" class="sr-only">密码</label>
+			<input type="password" id="inputcpwd" name="cpwd" class="form-control"
+				   placeholder="密码" required="">
 			<div class="checkbox">
 				<label> <input type="checkbox" name="rme" value="rme">记住我
 				</label>

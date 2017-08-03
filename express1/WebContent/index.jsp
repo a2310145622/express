@@ -97,11 +97,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<%
-					if (session.getAttribute("sid_in_session") != null) {
+					if (session.getAttribute("cid_in_session") != null) {
 				%>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("sid_in_session")%><span
+					aria-expanded="false"><%=session.getAttribute("cid_in_session")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">设置</a></li>
@@ -187,9 +187,9 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 			</div>
 		</div>
 	</div>
-	<%
-		List<Map<String, Object>> stafflist = (List<Map<String, Object>>) request.getAttribute("stafflist");
-	%>
+<%-- 	<% --%>
+<!-- // 		List<Map<String, Object>> clientlist = (List<Map<String, Object>>) request.getAttribute("clientlist"); -->
+<%-- 	%> --%>
 	<div class="container">
 		<div class="jumbotron">
 			<table class="table table-hover">
@@ -197,22 +197,20 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 					<tr>
 						<th class="active">账号</th>
 						<th class="success">姓名</th>
-						<th class="warning">编号</th>
-						<th class="danger">电话</th>
-						<th class="active">密码</th>
-						<th class="success">备注</th>
+						<th class="warning">电话</th>
+						<th class="danger">密码</th>
+						<th class="active">邮箱</th>
 						<th class="danger">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${requestScope.stafflist}" var="s">
+					<c:forEach items="${requestScope.clientlist}" var="c">
 						<tr>
-							<td class="active">${s.STAFFID}</td>
-							<td class="success">${s.STAFFNAME}</td>
-							<td class="warning">${s.STAFFNUMBER}</td>
-							<td class="danger">${s.LINKPHONE}</td>
-							<td class="active">${s.STAFFPASSWORD}</td>
-							<td class="success">${s.REMARK}</td>
+							<td class="active">${c.CLIENTID}</td>
+							<td class="success">${c.CLIENTNAME}</td>
+							<td class="warning">${c.LINKPHONE}</td>
+							<td class="danger">${c.CLIENTPASSWORD}</td>
+							<td class="active">${c.CLIENTEMAIL}</td>
 							<td class="danger"><a href="index.html">详情</a></td>
 						</tr>
 					</c:forEach>
@@ -235,38 +233,36 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="active">账户</th>
+						<th class="active">账号</th>
 						<th class="success">姓名</th>
-						<th class="warning">编号</th>
-						<th class="danger">电话</th>
-						<th class="active">密码</th>
-						<th class="success">备注</th>
+						<th class="warning">电话</th>
+						<th class="danger">密码</th>
+						<th class="active">邮箱</th>
 						<th class="danger">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${requestScope.staffs.result}" var="s">
+					<c:forEach items="${requestScope.clients.result}" var="c">
 						<tr>
-							<td class="active">${s.STAFFID}</td>
-							<td class="success">${s.STAFFNAME}</td>
-							<td class="warning">${s.STAFFNUMBER}</td>
-							<td class="danger">${s.LINKPHONE}</td>
-							<td class="active">${s.STAFFPASSWORD}</td>
-							<td class="success">${s.REMARK}</td>
+							<td class="active">${c.CLIENTID}</td>
+							<td class="success">${c.CLIENTNAME}</td>
+							<td class="warning">${c.LINKPHONE}</td>
+							<td class="danger">${c.CLIENTPASSWORD}</td>
+							<td class="active">${c.CLIENTEMAIL}</td>
 							<td class="danger"><a href="index.html">详情</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="4"><span> 当前第 ${staffs.currentPage} 页 /
-								总共 ${staffs.totalPages} 页 </span> <c:if test="${staffs.currentPage>1}">
-								<a href="queryStaffList?currPage=1">首页</a>
-								<a href="queryStaffList?currPage=${staffs.currentPage-1}">上一页</a>
+						<td colspan="4"><span> 当前第 ${clients.currentPage} 页 /
+								总共 ${clients.totalPages} 页 </span> <c:if test="${clients.currentPage>1}">
+								<a href="queryClientList?currPage=1">首页</a>
+								<a href="queryClientList?currPage=${clients.currentPage-1}">上一页</a>
 							</c:if> <c:choose>
-								<c:when test="${staffs.currentPage<staffs.totalPages}">
-									<a href="queryStaffList?currPage=${staffs.currentPage+1}">下一页</a>
-									<a href="queryStaffList?currPage=${staffs.totalPages}">尾页</a>
+								<c:when test="${clients.currentPage<clients.totalPages}">
+									<a href="queryClientList?currPage=${clients.currentPage+1}">下一页</a>
+									<a href="queryClientList?currPage=${clients.totalPages}">尾页</a>
 								</c:when>
 							</c:choose></td>
 					</tr>

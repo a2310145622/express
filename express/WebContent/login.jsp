@@ -91,12 +91,12 @@
 
 		<form class="form-signin" action="login" method="post">
 			<h2 class="form-signin-heading">请登录</h2>
-			<label for="inputstid" class="sr-only">账号</label> <input
-				type="text" id="inputstid" name="sid" class="form-control"
-				placeholder="账号" required="" autofocus=""> <label
-				for="inputspwd" class="sr-only">密码</label> <input
-				type="password" id="inputspwd" name="spwd" class="form-control"
-				placeholder="密码" required="">
+			<label for="inputstid" class="sr-only">账号</label>
+			<input type="text" id="inputstid" name="sid" class="form-control"
+				   placeholder="账号" required="" autofocus="">
+			<label for="inputspwd" class="sr-only">密码</label>
+			<input type="password" id="inputspwd" name="spwd" class="form-control"
+				   placeholder="密码" required="">
 			<div class="checkbox">
 				<label> <input type="checkbox" name="rme" value="rme">记住我
 				</label>

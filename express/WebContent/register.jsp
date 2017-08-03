@@ -45,15 +45,9 @@
 	border: 1px solid #b3b3b3 !important
 }
 </style>
-</head>
 <script type="text/javascript">  
 var pwd;
 var cpwd;
-
-window.onload = function()
-{
- document.getElementById("inputsid").focus();
-}
 
 function check(sid) {
 	var xmlhttp;
@@ -107,6 +101,7 @@ function validate() {
 	}
 	session.setAttribute("msg", "");
 %>
+</head>
 <body>
 
 	<!-- <img src="./image/favicon.ico" onclick="click1()"> -->
@@ -114,27 +109,29 @@ function validate() {
 
 		<form class="form-signin" action="register" method="post">
 			<h2 class="form-signin-heading">注册</h2>
-			<label for="inputstid" class="sr-only">账号</label> <input type="text"
-				id="inputsid" name="sid" class="form-control" placeholder="账号"
-				required="" autofocus="" onchange="check(this.value)"> <span
-				id="warn"></span> <label for="inputspwd" class="sr-only">输入密码</label>
-			<input type="password" id="inputspwd" name="spwd"
-				class="form-control" placeholder="输入密码" required=""
-				onchange="validate()"> <label for="confirmspwd"
-				class="sr-only">确认密码</label> <input type="password" id="confirmspwd"
-				name="cspwd" class="form-control" placeholder="确认密码" required=""
-				onchange="validate()"> <span id="warning2"></span> <label
-				for="inputname" class="sr-only">姓名</label> <input type="text"
-				id="inputname" name="name" class="form-control" placeholder="姓名"
-				required="" autofocus=""> <label for="inputsnumber"
-				class="sr-only">编号</label> <input type="text" id="inputsnumber"
-				name="snumber" class="form-control" placeholder="编号" required=""
-				autofocus=""> <label for="inputlphone" class="sr-only">电话</label>
-			<input type="text" id="inputlphone" name="lphone"
-				class="form-control" placeholder="电话" autofocus=""> <label
-				for="inputremark" class="sr-only">备注</label> <input type="text"
-				id="inputremark" name="remark" class="form-control" placeholder="备注"
-				autofocus="">
+			<label for="inputsid" class="sr-only">账号</label>
+			<input type="text" id="inputsid" name="sid" class="form-control"
+                   placeholder="账号" required="" autofocus="" onchange="check(this.value)">
+            <span id="warn"></span>
+            <label for="inputspwd" class="sr-only">输入密码</label>
+			<input type="password" id="inputspwd" name="spwd" class="form-control"
+                   placeholder="输入密码" required="" onchange="validate()">
+            <label for="confirmspwd" class="sr-only">确认密码</label>
+            <input type="password" id="confirmspwd" name="cspwd" class="form-control"
+                   placeholder="确认密码" required="" onchange="validate()">
+            <span id="warning2"></span>
+            <label for="inputsname" class="sr-only">姓名</label>
+            <input type="text" id="inputsname" name="sname" class="form-control"
+                   placeholder="姓名" required="">
+            <label for="inputsnumber" class="sr-only">编号</label>
+            <input type="text" id="inputsnumber" name="snumber" class="form-control"
+                   placeholder="编号" required="">
+            <label for="inputslphone" class="sr-only">电话</label>
+			<input type="text" id="inputslphone" name="slphone" class="form-control"
+			       placeholder="电话">
+			<label for="inputsremark" class="sr-only">备注</label>
+			<input type="text" id="inputsremark" name="sremark" class="form-control"
+			       placeholder="备注">
 			<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
 		</form>
 
