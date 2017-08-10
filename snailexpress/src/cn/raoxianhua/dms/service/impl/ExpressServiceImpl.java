@@ -60,4 +60,12 @@ public class ExpressServiceImpl implements IExpressService {
 		return modify;
 	}
 
+	@Override
+	public int doUpdate(String eid, String edetails) {
+		// TODO Auto-generated method stub
+		
+		int update = expressDao.update(eid,edetails);
+		return update;
+	}
+
 }

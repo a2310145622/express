@@ -56,19 +56,6 @@
 	border: 1px solid #b3b3b3 !important
 }
 </style>
-<script type="text/javascript">
-function click1(EXPRESSID,CLIENTID,COLLECTCLIENTNAME,COLLECTPHONE,SENDADDRESS,
-		SENDCLIENTNAME,SENDPHONE,HOMEADDRESS,REMARK,SIGNFOR,DELIVERYWAYID,CONNECTTIME){
-	window.location.href="expressmodify.jsp?EXPRESSID="+EXPRESSID+"&CLIENTID="+CLIENTID
-	+"&COLLECTCLIENTNAME="+COLLECTCLIENTNAME+"&COLLECTPHONE="+COLLECTPHONE+"&SENDADDRESS="
-	+SENDADDRESS+"&SENDCLIENTNAME="+SENDCLIENTNAME+"&SENDPHONE="+SENDPHONE+
-	"&HOMEADDRESS="+HOMEADDRESS+"&REMARK="+REMARK+"&SIGNFOR="+SIGNFOR
-	+"&DELIVERYWAYID="+DELIVERYWAYID+"&CONNECTTIME="+CONNECTTIME; 
-}
-function click2(EXPRESSID){
-	window.location.href="expressUpdate?EXPRESSID="+EXPRESSID; 
-}
-</script>
 </head>
 <%
 	Cookie[] cookies = request.getCookies();
@@ -84,6 +71,7 @@ function click2(EXPRESSID){
 			}
 		}
 	}
+	session.setAttribute("EXPRESSID",request.getAttribute("EXPRESSID"));
 	String msg = (String) session.getAttribute("msg");
 	if (msg != null && msg.length() != 0) {
 %>
@@ -182,128 +170,55 @@ function click2(EXPRESSID){
 					<li><a href="settings">设置</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
-				    <li class="active"><a href="queryExpressList">快递单信息列表<span class="sr-only">(current)</span></a></li>
+				    <li><a href="queryExpressList">快递单信息列表</a></li>
 					<li><a href="queryClientList">客户信息列表</a></li>
 					<li><a href="queryStaffList">管理员信息列表</a></li>
 					<li><a href="add.jsp">添加新的管理员账号</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	          <h1 class="page-header">快递单管理</h1>
-	
-	          <h2 class="sub-header">数据列表</h2>
-	          <div class="table-responsive">
-	            <table class="table table-striped table-hover">
-	              <thead>
-	                <tr>
-	                  <th class="active">运单号</th>
-	                  <th class="success">用户账号</th>
-	                  <th class="warning">收件人姓名</th>
-	                  <th class="danger">收件人电话</th>
-	                  <th class="active">收货地址</th>
-	                  <th class="success">寄件人姓名</th>
-	                  <th class="warning">寄件人电话</th>
-	                  <th class="danger">寄件人地址</th>
-	                  <th class="active">备注</th>
-	                  <th class="success">签收货状态</th>
-	                  <th class="warning">货运方式</th>
-	                  <th class="danger">接单时间</th>
-	                  <th class="active">操作</th>
-					</tr>
-	              </thead>
-	              <tbody>
-	                <c:forEach items="${requestScope.expresses.result}" var="e">
-							<tr>
-								<td class="active">${e.EXPRESSID}</td>
-								<td class="success">${e.CLIENTID}</td>
-								<td class="warning">${e.COLLECTCLIENTNAME}</td>
-								<td class="danger">${e.COLLECTPHONE}</td>
-								<td class="active">${e.SENDADDRESS}</td>
-								<td class="success">${e.SENDCLIENTNAME}</td>
-								<td class="warning">${e.SENDPHONE}</td>
-								<td class="danger">${e.HOMEADDRESS}</td>
-								<td class="active">${e.REMARK}</td>
-								<td class="success">${e.SIGNFOR}</td>
-								<td class="warning">${e.DELIVERYWAYID}</td>
-								<td class="danger" width="9%">${e.CONNECTTIME}</td>
-								<td class="active" width="11%"><a href="javascript:void(0)"
-									onclick="click1('${e.EXPRESSID}','${e.CLIENTID}','${e.COLLECTCLIENTNAME}'
-									,'${e.COLLECTPHONE}','${e.SENDADDRESS}','${e.SENDCLIENTNAME}'
-									,'${e.SENDPHONE}','${e.HOMEADDRESS}','${e.REMARK}'
-									,'${e.SIGNFOR}','${e.DELIVERYWAYID}','${e.CONNECTTIME}')">修改</a>
-								<a href="javascript:void(0)"
-									onclick="click2('${e.EXPRESSID}')">更新</a>
-								<a href="#">删除</a></td>
-							</tr>
-						</c:forEach>
-	              </tbody>
-	              <tfoot>
-						<tr>
-							<td colspan="4"><span> 当前第 ${expresses.currentPage} 页 /
-									总共 ${expresses.totalPages} 页 </span> <c:if test="${expresses.currentPage>1}">
-									<a href="queryExpressList?currPage=1">首页</a>
-									<a href="queryExpressList?currPage=${expresses.currentPage-1}">上一页</a>
-								</c:if> <c:choose>
-									<c:when test="${expresses.currentPage<expresses.totalPages}">
-										<a href="queryExpressList?currPage=${expresses.currentPage+1}">下一页</a>
-										<a href="queryExpressList?currPage=${expresses.totalPages}">尾页</a>
-									</c:when>
-								</c:choose></td>
+	          <h1 class="page-header">快递运输管理</h1>
+	          <h3 class="sub-header">运单号<%=request.getAttribute("EXPRESSID")%>的运输信息</h3>
+		      <div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+		                <tr>
+		                  <th class="active">扫描时间</th>
+		                  <th class="success">跟踪记录</th>
+	<!-- 	                  <th class="warning">操作</th> -->
 						</tr>
-					</tfoot>
-	            </table>
-	          </div>
-	        </div>
+		              </thead>
+		              <tbody>
+		                <c:forEach items="${requestScope.EXPRESS}" var="e">
+								<tr>
+									<td class="active" width="16%">${e.EXPRESSTIME}</td>
+									<td class="success">${e.EXPRESSDETAILS}</td>
+	<!-- 								<td class="warning" width="15%"><a href="#">详情</a></td> -->
+								</tr>
+							</c:forEach>
+		              </tbody>
+				</table>
+			  </div>
+	          
+	          <form class="form-horizontal" role="form" action="doExpressUpdate" method="post">
+			  	  <fieldset>
+			  		<div id="legend" class="">
+			  			<legend class="">更新运输信息</legend>
+			  		</div>
+			  		<div class="form-group">
+			    		<div class="col-sm-12">
+			    			<textarea class="form-control" rows="4" id="inputeremark"
+			    			name="edetails" placeholder="快递运输的站点信息"></textarea>
+			    		</div>
+			    		
+			  		</div>
+			      </fieldset>
+			      <button class="btn btn-lg btn-primary btn-block center-block"
+			              type="submit" style="width:20%">更新运输信息</button>
+			 </form>
+	       </div>
 		</div>
 	</div>
-
-
-	<!-- 	<div class="container"> -->
-	<!-- 		<div class="jumbotron"> -->
-	<!-- 			<table class="table table-hover"> -->
-	<!-- 				<thead> -->
-	<!-- 					<tr> -->
-	<!-- 						<th class="active">账户</th> -->
-	<!-- 						<th class="success">姓名</th> -->
-	<!-- 						<th class="warning">编号</th> -->
-	<!-- 						<th class="danger">电话</th> -->
-	<!-- 						<th class="active">密码</th> -->
-	<!-- 						<th class="success">备注</th> -->
-	<!-- 						<th class="danger">操作</th> -->
-	<!-- 					</tr> -->
-	<!-- 				</thead> -->
-	<!-- 				<tbody> -->
-	<%-- 					<c:forEach items="${requestScope.staffs.result}" var="s"> --%>
-	<!-- 						<tr> -->
-	<%-- 							<td class="active">${s.STAFFID}</td> --%>
-	<%-- 							<td class="success">${s.STAFFNAME}</td> --%>
-	<%-- 							<td class="warning">${s.STAFFNUMBER}</td> --%>
-	<%-- 							<td class="danger">${s.LINKPHONE}</td> --%>
-	<%-- 							<td class="active">${s.STAFFPASSWORD}</td> --%>
-	<%-- 							<td class="success">${s.REMARK}</td> --%>
-	<!-- 							<td class="danger"><a href="#">详情</a></td> -->
-	<!-- 						</tr> -->
-	<%-- 					</c:forEach> --%>
-	<!-- 				</tbody> -->
-	<!-- 				<tfoot> -->
-	<!-- 					<tr> -->
-	<%-- 						<td colspan="4"><span> 当前第 ${staffs.currentPage} 页 / --%>
-	<%-- 								总共 ${staffs.totalPages} 页 </span> <c:if test="${staffs.currentPage>1}"> --%>
-	<!-- 								<a href="queryStaffList?currPage=1">首页</a> -->
-	<%-- 								<a href="queryStaffList?currPage=${staffs.currentPage-1}">上一页</a> --%>
-	<%-- 							</c:if> <c:choose> --%>
-	<%-- 								<c:when test="${staffs.currentPage<staffs.totalPages}"> --%>
-	<%-- 									<a href="queryStaffList?currPage=${staffs.currentPage+1}">下一页</a> --%>
-	<%-- 									<a href="queryStaffList?currPage=${staffs.totalPages}">尾页</a> --%>
-	<%-- 								</c:when> --%>
-	<%-- 							</c:choose></td> --%>
-	<!-- 					</tr> -->
-	<!-- 				</tfoot> -->
-	<!-- 			</table> -->
-	<!-- 		</div> -->
-
-	<!-- 	</div> -->
-	<!-- 	<!-- /container -->
 
 	<%
 		}

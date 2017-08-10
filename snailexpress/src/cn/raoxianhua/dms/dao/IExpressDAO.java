@@ -25,4 +25,6 @@ public interface IExpressDAO {
 	int modify(String eid,String eccname, String ecphone, String esaddress, String escname, String esphone, String ehaddress,
 			String eremark, String esignfor, String edid);
 
+	int update(String eid, String edetails);
+
 }

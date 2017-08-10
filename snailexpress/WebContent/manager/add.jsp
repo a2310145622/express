@@ -255,7 +255,7 @@ function validate() {
 			<label for="inputsremark" class="sr-only">备注</label>
 			<input type="text" id="inputsremark" name="sremark" class="form-control"
 			       placeholder="备注">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">添加</button>
 		</form>
 		</div>
 	  </div>

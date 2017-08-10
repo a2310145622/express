@@ -40,8 +40,7 @@ public class ExpressDAOImpl implements IExpressDAO {
 	public List<Map<String, Object>> query(String eid) {
 		// TODO Auto-generated method stub
 		
-		String sql = "SELECT * FROM EXPRESS JOIN EXPRESSDETAILS ON "
-				+ "EXPRESS.EXPRESSID=EXPRESSDETAILS.EXPRESSID WHERE EXPRESS.EXPRESSID=?";
+		String sql = "SELECT * FROM EXPRESSDETAILS  WHERE EXPRESSID=? ORDER BY EXPRESSDETAILSID";
 		List<Map<String, Object>> express = null;
 		
 		try {
@@ -91,6 +90,24 @@ public class ExpressDAOImpl implements IExpressDAO {
 
 		}
 		return modify;
+	}
+
+	@Override
+	public int update(String eid, String edetails) {
+		// TODO Auto-generated method stub
+		
+		
+		String sql = "INSERT INTO EXPRESSDETAILS (EXPRESSDETAILSID, EXPRESSDETAILS, EXPRESSID) VALUES "
+				+ "(lpad(lpad(seq_expressdetails.nextval,6,'0'),8,'ed'), ?,?)";
+		
+		int update = 0;
+		try {
+			update = DBUtils.modify(sql,edetails,eid);
+			
+		} catch (Exception e) {
+
+		}
+		return update;
 	}
 
 }
