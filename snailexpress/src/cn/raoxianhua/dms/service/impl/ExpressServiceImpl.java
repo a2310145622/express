@@ -40,6 +40,14 @@ public class ExpressServiceImpl implements IExpressService {
 		List<Map<String, Object>> express = expressDao.query(eid);
 		return express;
 	}
+	
+	@Override
+	public List<Map<String, Object>> doESearch(String eid) {
+		// TODO Auto-generated method stub
+		
+		List<Map<String, Object>> express = expressDao.equery(eid);
+		return express;
+	}
 
 	@Override
 	public int doAdd(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,

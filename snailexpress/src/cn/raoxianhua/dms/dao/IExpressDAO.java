@@ -18,6 +18,8 @@ public interface IExpressDAO {
 	CommonPage<Map<String, Object>> queryPage(int currentPage);
 
 	List<Map<String, Object>> query(String eid);
+	
+	List<Map<String, Object>> equery(String eid);
 
 	int add(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
 			String esphone, String ehaddress);

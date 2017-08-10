@@ -18,6 +18,9 @@ public interface IExpressService {
 	CommonPage<Map<String, Object>> queryPage(int currentPage);
 
 	List<Map<String, Object>> doSearch(String eid);
+	
+	List<Map<String, Object>> doESearch(String eid);
+	
 	int doAdd(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
 			String esphone, String ehaddress);
 

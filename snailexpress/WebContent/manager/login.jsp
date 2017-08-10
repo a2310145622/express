@@ -1,21 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.net.URLDecoder"%>
-<%
-	Cookie[] cookies = request.getCookies();
-	String sid = null;
-
-	if (session.getAttribute("sid_in_session") == null) {
-		if (cookies != null) {
-			for (Cookie c:cookies) {
-				if ("sid".equals(c.getName())) {
-					//如果是中文，cookies需要解码
-					request.getRequestDispatcher("doLogin").forward(request, response);
-				}
-			}
-		}
-	} else
-		response.sendRedirect("index.jsp");//get请求
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -62,7 +46,22 @@
 	border: 1px solid #b3b3b3 !important
 }
 </style>
+</head>
 <%
+	Cookie[] cookies = request.getCookies();
+	String sid = null;
+
+	if (session.getAttribute("sid_in_session") == null) {
+		if (cookies != null) {
+			for (Cookie c:cookies) {
+				if ("sid".equals(c.getName())) {
+					//如果是中文，cookies需要解码
+					request.getRequestDispatcher("doLogin").forward(request, response);
+				}
+			}
+		}
+	} else
+		response.sendRedirect("index.jsp");//get请求
 	String msg = (String) session.getAttribute("msg");
 	if (msg != null && msg.length() != 0) {
 %>
@@ -73,9 +72,42 @@
 	}
 	session.setAttribute("msg", "");
 %>
-</head>
 <body>
-
+    <!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.jsp"><font style="font-weight: bold;">后台管理</font></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="../index.jsp">返回前台</a></li>
+				<!-- 				<li><a href="#about">About</a></li> -->
+				<!-- 				<li><a href="#contact">Contact</a></li> -->
+				<!-- 				<li class="dropdown"><a href="#" class="dropdown-toggle" -->
+				<!-- 					data-toggle="dropdown" role="button" aria-haspopup="true" -->
+				<!-- 					aria-expanded="false">Dropdown <span class="caret"></span></a> -->
+				<!-- 					<ul class="dropdown-menu"> -->
+				<!-- 						<li><a href="#">Action</a></li> -->
+				<!-- 						<li><a href="#">Another action</a></li> -->
+				<!-- 						<li><a href="#">Something else here</a></li> -->
+				<!-- 						<li role="separator" class="divider"></li> -->
+				<!-- 						<li class="dropdown-header">Nav header</li> -->
+				<!-- 						<li><a href="#">Separated link</a></li> -->
+				<!-- 						<li><a href="#">One more separated link</a></li> -->
+				<!-- 					</ul></li> -->
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+	</nav>
 	<div class="container">
 
 		<form class="form-signin" action="doLogin" method="post">

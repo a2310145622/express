@@ -1,21 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.net.URLDecoder"%>
-<%
-	Cookie[] cookies = request.getCookies();
-	String cid = null;
-
-	if (session.getAttribute("cid_in_session") == null) {
-		if (cookies != null) {
-			for(Cookie c:cookies){
-				if ("cid".equals(c.getName())) {
-					//如果是中文，cookies需要解码
-					request.getRequestDispatcher("doLogin").forward(request, response);
-				} 
-			}
-		}
-	} else
-		response.sendRedirect("index.jsp");//get请求
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -62,17 +46,6 @@
 	border: 1px solid #b3b3b3 !important
 }
 </style>
-<%
-	String msg = (String) session.getAttribute("msg");
-	if (msg != null && msg.length() != 0) {
-%>
-<script type="text/javascript">
-            alert("<%=msg%>");
-</script>
-<%
-	}
-	session.setAttribute("msg", "");
-%>
 <script type="text/javascript">
 function check(){
 	var eid = document.getElementById("eid");
@@ -88,6 +61,31 @@ function click1(){
 }
 </script>
 </head>
+<%
+	Cookie[] cookies = request.getCookies();
+	String cid = null;
+
+	if (session.getAttribute("cid_in_session") == null) {
+		if (cookies != null) {
+			for(Cookie c:cookies){
+				if ("cid".equals(c.getName())) {
+					//如果是中文，cookies需要解码
+					request.getRequestDispatcher("doLogin").forward(request, response);
+				} 
+			}
+		}
+	} else
+		response.sendRedirect("index.jsp");//get请求
+	String msg = (String) session.getAttribute("msg");
+	if (msg != null && msg.length() != 0) {
+%>
+<script type="text/javascript">
+            alert("<%=msg%>");
+</script>
+<%
+	}
+	session.setAttribute("msg", "");
+%>
 <body>
 
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -103,7 +101,7 @@ function click1(){
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><font style="font-weight: bold;">蜗牛速递</font></a>
+			<a class="navbar-brand" href="index.jsp"><font style="font-weight: bold;">蜗牛速递</font></a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
@@ -127,30 +125,6 @@ function click1(){
 						<li><a href="#">蜗牛人物</a></li>
 					</ul></li>
 				<li><a href="manager/index.jsp">后台管理</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<%
-					if (session.getAttribute("cid_in_session") != null) {
-				%>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("cid_in_session")%><span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="settings">设置</a></li>
-						<li><a href="Logout">退出</a></li>
-					</ul></li>
-				<%-- 				<li><a><%=session.getAttribute("sid_in_session")%></a></li> --%>
-				<!-- 				<li class="active"><a href="deletecookie">退出 <span -->
-				<!-- 						class="sr-only">(current)</span></a></li> -->
-				<%
-					} else {
-				%>
-				<li><a href="login.jsp">登录</a></li>
-				<li><a href="register.jsp">注册</a></li>
-				<%
-					}
-				%>
 			</ul>
 			<form class="navbar-form navbar-right" name="search" action="doSearch" method="get" onsubmit="return check()">
 				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入8位运单号" maxlength="8">

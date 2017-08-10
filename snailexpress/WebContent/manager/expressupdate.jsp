@@ -56,6 +56,20 @@
 	border: 1px solid #b3b3b3 !important
 }
 </style>
+<script type="text/javascript">
+function check(){
+	var eid = document.getElementById("eid");
+	if(eid.value.length!=8){
+		alert("请输入8位运单号！");
+		return false;
+	}else
+		return true;
+}
+function click1(){
+	if(check())
+		document.search.submit();
+}
+</script>
 </head>
 <%
 	Cookie[] cookies = request.getCookies();
@@ -138,6 +152,13 @@
 					}
 				%>
 			</ul>
+			<%if (session.getAttribute("sid_in_session") != null) {%>
+			<form class="navbar-form navbar-right" name="search" action="doESearch" method="get" onsubmit="return check()">
+				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入8位运单号" maxlength="8">
+				<img src="../assets/image/kuaididanhaochaxun.png"style="width:30px;height:30px"
+				     onclick="click1()">
+			</form>
+			<%}%>
 		</div>
 		<!--/.nav-collapse -->
 	</div>

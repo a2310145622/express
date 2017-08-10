@@ -13,7 +13,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="../assets/image/favicon.ico">
+<link rel="icon" href="../image/favicon.ico">
 
 <title>蜗牛快递后台管理</title>
 
@@ -26,13 +26,14 @@
 
 <!-- Custom styles for this template -->
 <link href="../assets/css/dashboard.css" rel="stylesheet">
-
 <!-- Custom styles for this template -->
 <link href="../assets/css/navbar-fixed-top.css" rel="stylesheet">
 
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+<script src="../assets/js/docs.min.js"></script>
 
 <script src="../assets/js/holder.js"></script>
 
@@ -68,6 +69,19 @@ function click1(){
 	if(check())
 		document.search.submit();
 }
+
+function click2(EXPRESSID,CLIENTID,COLLECTCLIENTNAME,COLLECTPHONE,SENDADDRESS,
+		SENDCLIENTNAME,SENDPHONE,HOMEADDRESS,REMARK,SIGNFOR,DELIVERYWAYID,CONNECTTIME){
+	window.location.href="expressmodify.jsp?EXPRESSID="+EXPRESSID+"&CLIENTID="+CLIENTID
+	+"&COLLECTCLIENTNAME="+COLLECTCLIENTNAME+"&COLLECTPHONE="+COLLECTPHONE+"&SENDADDRESS="
+	+SENDADDRESS+"&SENDCLIENTNAME="+SENDCLIENTNAME+"&SENDPHONE="+SENDPHONE+
+	"&HOMEADDRESS="+HOMEADDRESS+"&REMARK="+REMARK+"&SIGNFOR="+SIGNFOR
+	+"&DELIVERYWAYID="+DELIVERYWAYID+"&CONNECTTIME="+CONNECTTIME; 
+}
+
+function click3(EXPRESSID){
+	window.location.href="expressUpdate?EXPRESSID="+EXPRESSID; 
+}
 </script>
 </head>
 <%
@@ -84,6 +98,7 @@ function click1(){
 			}
 		}
 	}
+	session.setAttribute("EXPRESSID",request.getAttribute("EXPRESSID"));
 	String msg = (String) session.getAttribute("msg");
 	if (msg != null && msg.length() != 0) {
 %>
@@ -131,14 +146,14 @@ function click1(){
 				<%
 					if (session.getAttribute("sid_in_session") != null) {
 				%>
+				<li><a href="add.jsp">添加新的管理员账号</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false"><%=session.getAttribute("sid_in_session")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Logout">退出</a></li>
-					</ul>
-				</li>
+					</ul></li>
 				<%-- 				<li><a><%=session.getAttribute("sid_in_session")%></a></li> --%>
 				<!-- 				<li class="active"><a href="deletecookie">退出 <span -->
 				<!-- 						class="sr-only">(current)</span></a></li> -->
@@ -183,236 +198,75 @@ function click1(){
 	%>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-1 col-md-2 sidebar">
+			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="index.jsp">概览<span
-							class="sr-only">(current)</span></a></li>
+					<li><a href="index.jsp">概览</a></li>
 					<li><a href="settings">设置</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
-					<li><a href="queryExpressList">快递单信息列表</a></li>
+				    <li><a href="queryExpressList">快递单信息列表</a></li>
 					<li><a href="queryClientList">客户信息列表</a></li>
 					<li><a href="queryStaffList">管理员信息列表</a></li>
 					<li><a href="add.jsp">添加新的管理员账号</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">Dashboard</h1>
-
-				<div class="row placeholders">
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img
-							src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-							width="200" height="200" class="img-responsive"
-							alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
-					</div>
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img
-							src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-							width="200" height="200" class="img-responsive"
-							alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
-					</div>
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img
-							src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-							width="200" height="200" class="img-responsive"
-							alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
-					</div>
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img
-							src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-							width="200" height="200" class="img-responsive"
-							alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
-					</div>
-				</div>
-
-				<h2 class="sub-header">Section title</h2>
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
+	          <h1 class="page-header">快递单管理</h1>
+	          <%if(request.getAttribute("EXPRESS")!=null){%>
+	          <h3 class="sub-header">运单号<%=request.getAttribute("EXPRESSID")%>的搜索结果</h3>
+		      <div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+	                <tr>
+	                  <th class="active">运单号</th>
+	                  <th class="success">用户账号</th>
+	                  <th class="warning">收件人姓名</th>
+	                  <th class="danger">收件人电话</th>
+	                  <th class="active">收货地址</th>
+	                  <th class="success">寄件人姓名</th>
+	                  <th class="warning">寄件人电话</th>
+	                  <th class="danger">寄件人地址</th>
+	                  <th class="active">备注</th>
+	                  <th class="success">签收货状态</th>
+	                  <th class="warning">货运方式</th>
+	                  <th class="danger">接单时间</th>
+	                  <th class="active">操作</th>
+					</tr>
+	              </thead>
+	              <tbody>
+	                <c:forEach items="${requestScope.EXPRESS}" var="e">
 							<tr>
-								<th>#</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
+								<td class="active">${e.EXPRESSID}</td>
+								<td class="success">${e.CLIENTID}</td>
+								<td class="warning">${e.COLLECTCLIENTNAME}</td>
+								<td class="danger">${e.COLLECTPHONE}</td>
+								<td class="active">${e.SENDADDRESS}</td>
+								<td class="success">${e.SENDCLIENTNAME}</td>
+								<td class="warning">${e.SENDPHONE}</td>
+								<td class="danger">${e.HOMEADDRESS}</td>
+								<td class="active">${e.REMARK}</td>
+								<td class="success">${e.SIGNFOR}</td>
+								<td class="warning">${e.DELIVERYWAYID}</td>
+								<td class="danger" width="9%">${e.CONNECTTIME}</td>
+								<td class="active" width="11%"><a href="javascript:void(0)"
+									onclick="click2('${e.EXPRESSID}','${e.CLIENTID}','${e.COLLECTCLIENTNAME}'
+									,'${e.COLLECTPHONE}','${e.SENDADDRESS}','${e.SENDCLIENTNAME}'
+									,'${e.SENDPHONE}','${e.HOMEADDRESS}','${e.REMARK}'
+									,'${e.SIGNFOR}','${e.DELIVERYWAYID}','${e.CONNECTTIME}')">修改</a>
+								<a href="javascript:void(0)"
+									onclick="click3('${e.EXPRESSID}')">更新</a>
+								<a href="#">删除</a></td>
 							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1,001</td>
-								<td>Lorem</td>
-								<td>ipsum</td>
-								<td>dolor</td>
-								<td>sit</td>
-							</tr>
-							<tr>
-								<td>1,002</td>
-								<td>amet</td>
-								<td>consectetur</td>
-								<td>adipiscing</td>
-								<td>elit</td>
-							</tr>
-							<tr>
-								<td>1,003</td>
-								<td>Integer</td>
-								<td>nec</td>
-								<td>odio</td>
-								<td>Praesent</td>
-							</tr>
-							<tr>
-								<td>1,003</td>
-								<td>libero</td>
-								<td>Sed</td>
-								<td>cursus</td>
-								<td>ante</td>
-							</tr>
-							<tr>
-								<td>1,004</td>
-								<td>dapibus</td>
-								<td>diam</td>
-								<td>Sed</td>
-								<td>nisi</td>
-							</tr>
-							<tr>
-								<td>1,005</td>
-								<td>Nulla</td>
-								<td>quis</td>
-								<td>sem</td>
-								<td>at</td>
-							</tr>
-							<tr>
-								<td>1,006</td>
-								<td>nibh</td>
-								<td>elementum</td>
-								<td>imperdiet</td>
-								<td>Duis</td>
-							</tr>
-							<tr>
-								<td>1,007</td>
-								<td>sagittis</td>
-								<td>ipsum</td>
-								<td>Praesent</td>
-								<td>mauris</td>
-							</tr>
-							<tr>
-								<td>1,008</td>
-								<td>Fusce</td>
-								<td>nec</td>
-								<td>tellus</td>
-								<td>sed</td>
-							</tr>
-							<tr>
-								<td>1,009</td>
-								<td>augue</td>
-								<td>semper</td>
-								<td>porta</td>
-								<td>Mauris</td>
-							</tr>
-							<tr>
-								<td>1,010</td>
-								<td>massa</td>
-								<td>Vestibulum</td>
-								<td>lacinia</td>
-								<td>arcu</td>
-							</tr>
-							<tr>
-								<td>1,011</td>
-								<td>eget</td>
-								<td>nulla</td>
-								<td>Class</td>
-								<td>aptent</td>
-							</tr>
-							<tr>
-								<td>1,012</td>
-								<td>taciti</td>
-								<td>sociosqu</td>
-								<td>ad</td>
-								<td>litora</td>
-							</tr>
-							<tr>
-								<td>1,013</td>
-								<td>torquent</td>
-								<td>per</td>
-								<td>conubia</td>
-								<td>nostra</td>
-							</tr>
-							<tr>
-								<td>1,014</td>
-								<td>per</td>
-								<td>inceptos</td>
-								<td>himenaeos</td>
-								<td>Curabitur</td>
-							</tr>
-							<tr>
-								<td>1,015</td>
-								<td>sodales</td>
-								<td>ligula</td>
-								<td>in</td>
-								<td>libero</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+						</c:forEach>
+	              </tbody>
+				</table>
+			  </div>
+	          <%}else{%>
+	          <h3><font color="red">没有运单号<%=request.getAttribute("EXPRESSID")%>的信息，请确认运单号是否输入正确！</font></h3>
+	          <%}%>
+	       </div>
 		</div>
 	</div>
-
-
-	<!-- 	<div class="container"> -->
-	<!-- 		<div class="jumbotron"> -->
-	<!-- 			<table class="table table-hover"> -->
-	<!-- 				<thead> -->
-	<!-- 					<tr> -->
-	<!-- 						<th class="active">账户</th> -->
-	<!-- 						<th class="success">姓名</th> -->
-	<!-- 						<th class="warning">编号</th> -->
-	<!-- 						<th class="danger">电话</th> -->
-	<!-- 						<th class="active">密码</th> -->
-	<!-- 						<th class="success">备注</th> -->
-	<!-- 						<th class="danger">操作</th> -->
-	<!-- 					</tr> -->
-	<!-- 				</thead> -->
-	<!-- 				<tbody> -->
-	<%-- 					<c:forEach items="${requestScope.staffs.result}" var="s"> --%>
-	<!-- 						<tr> -->
-	<%-- 							<td class="active">${s.STAFFID}</td> --%>
-	<%-- 							<td class="success">${s.STAFFNAME}</td> --%>
-	<%-- 							<td class="warning">${s.STAFFNUMBER}</td> --%>
-	<%-- 							<td class="danger">${s.LINKPHONE}</td> --%>
-	<%-- 							<td class="active">${s.STAFFPASSWORD}</td> --%>
-	<%-- 							<td class="success">${s.REMARK}</td> --%>
-	<!-- 							<td class="danger"><a href="#">详情</a></td> -->
-	<!-- 						</tr> -->
-	<%-- 					</c:forEach> --%>
-	<!-- 				</tbody> -->
-	<!-- 				<tfoot> -->
-	<!-- 					<tr> -->
-	<%-- 						<td colspan="4"><span> 当前第 ${staffs.currentPage} 页 / --%>
-	<%-- 								总共 ${staffs.totalPages} 页 </span> <c:if test="${staffs.currentPage>1}"> --%>
-	<!-- 								<a href="queryStaffList?currPage=1">首页</a> -->
-	<%-- 								<a href="queryStaffList?currPage=${staffs.currentPage-1}">上一页</a> --%>
-	<%-- 							</c:if> <c:choose> --%>
-	<%-- 								<c:when test="${staffs.currentPage<staffs.totalPages}"> --%>
-	<%-- 									<a href="queryStaffList?currPage=${staffs.currentPage+1}">下一页</a> --%>
-	<%-- 									<a href="queryStaffList?currPage=${staffs.totalPages}">尾页</a> --%>
-	<%-- 								</c:when> --%>
-	<%-- 							</c:choose></td> --%>
-	<!-- 					</tr> -->
-	<!-- 				</tfoot> -->
-	<!-- 			</table> -->
-	<!-- 		</div> -->
-
-	<!-- 	</div> -->
-	<!-- 	<!-- /container -->
 
 	<%
 		}

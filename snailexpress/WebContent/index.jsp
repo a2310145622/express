@@ -23,6 +23,9 @@
 <!-- Custom styles for this template -->
 <link href="./assets/css/jumbotron.css" rel="stylesheet">
 
+<!-- Custom styles for this template -->
+<link href="../assets/css/navbar-fixed-top.css" rel="stylesheet">
+
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="./assets/js/ie-emulation-modes-warning.js"></script>

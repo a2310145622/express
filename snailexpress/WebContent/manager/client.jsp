@@ -57,7 +57,20 @@
 }
 </style>
 <script type="text/javascript">
-function click1(CLIENTID,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
+function check(){
+	var eid = document.getElementById("eid");
+	if(eid.value.length!=8){
+		alert("请输入8位运单号！");
+		return false;
+	}else
+		return true;
+}
+function click1(){
+	if(check())
+		document.search.submit();
+}
+
+function click2(CLIENTID,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
 	//session.setAttribute("CLIENTID",CLIENTID);
 	window.location.href="clientmodify.jsp?CLIENTID="+CLIENTID+"&CLIENTNAME="+CLIENTNAME
 	+"&LINKPHONE="+LINKPHONE+"&CLIENTPASSWORD="+CLIENTPASSWORD+"&CLIENTEMAIL="+CLIENTEMAIL; 
@@ -151,6 +164,13 @@ function click1(CLIENTID,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
 					}
 				%>
 			</ul>
+			<%if (session.getAttribute("sid_in_session") != null) {%>
+			<form class="navbar-form navbar-right" name="search" action="doESearch" method="get" onsubmit="return check()">
+				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入8位运单号" maxlength="8">
+				<img src="../assets/image/kuaididanhaochaxun.png"style="width:30px;height:30px"
+				     onclick="click1()">
+			</form>
+			<%}%>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
@@ -214,7 +234,7 @@ function click1(CLIENTID,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
 									<td class="danger">${c.CLIENTPASSWORD}</td>
 									<td class="active">${c.CLIENTEMAIL}</td>
 									<td class="danger"><a href="javascript:void(0)"
-									onclick="click1('${c.CLIENTID}','${c.CLIENTNAME}','${c.LINKPHONE}'
+									onclick="click2('${c.CLIENTID}','${c.CLIENTNAME}','${c.LINKPHONE}'
 									,'${c.CLIENTPASSWORD}','${c.CLIENTEMAIL}')">修改</a></td>
 								</tr>
 							</c:forEach>

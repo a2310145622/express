@@ -57,7 +57,20 @@
 }
 </style>
 <script type="text/javascript">
-function click1(EXPRESSID,CLIENTID,COLLECTCLIENTNAME,COLLECTPHONE,SENDADDRESS,
+function check(){
+	var eid = document.getElementById("eid");
+	if(eid.value.length!=8){
+		alert("请输入8位运单号！");
+		return false;
+	}else
+		return true;
+}
+function click1(){
+	if(check())
+		document.search.submit();
+}
+
+function click2(EXPRESSID,CLIENTID,COLLECTCLIENTNAME,COLLECTPHONE,SENDADDRESS,
 		SENDCLIENTNAME,SENDPHONE,HOMEADDRESS,REMARK,SIGNFOR,DELIVERYWAYID,CONNECTTIME){
 	window.location.href="expressmodify.jsp?EXPRESSID="+EXPRESSID+"&CLIENTID="+CLIENTID
 	+"&COLLECTCLIENTNAME="+COLLECTCLIENTNAME+"&COLLECTPHONE="+COLLECTPHONE+"&SENDADDRESS="
@@ -65,7 +78,8 @@ function click1(EXPRESSID,CLIENTID,COLLECTCLIENTNAME,COLLECTPHONE,SENDADDRESS,
 	"&HOMEADDRESS="+HOMEADDRESS+"&REMARK="+REMARK+"&SIGNFOR="+SIGNFOR
 	+"&DELIVERYWAYID="+DELIVERYWAYID+"&CONNECTTIME="+CONNECTTIME; 
 }
-function click2(EXPRESSID){
+
+function click3(EXPRESSID){
 	window.location.href="expressUpdate?EXPRESSID="+EXPRESSID; 
 }
 </script>
@@ -150,6 +164,13 @@ function click2(EXPRESSID){
 					}
 				%>
 			</ul>
+			<%if (session.getAttribute("sid_in_session") != null) {%>
+			<form class="navbar-form navbar-right" name="search" action="doESearch" method="get" onsubmit="return check()">
+				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入8位运单号" maxlength="8">
+				<img src="../assets/image/kuaididanhaochaxun.png"style="width:30px;height:30px"
+				     onclick="click1()">
+			</form>
+			<%}%>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
@@ -227,12 +248,12 @@ function click2(EXPRESSID){
 								<td class="warning">${e.DELIVERYWAYID}</td>
 								<td class="danger" width="9%">${e.CONNECTTIME}</td>
 								<td class="active" width="11%"><a href="javascript:void(0)"
-									onclick="click1('${e.EXPRESSID}','${e.CLIENTID}','${e.COLLECTCLIENTNAME}'
+									onclick="click2('${e.EXPRESSID}','${e.CLIENTID}','${e.COLLECTCLIENTNAME}'
 									,'${e.COLLECTPHONE}','${e.SENDADDRESS}','${e.SENDCLIENTNAME}'
 									,'${e.SENDPHONE}','${e.HOMEADDRESS}','${e.REMARK}'
 									,'${e.SIGNFOR}','${e.DELIVERYWAYID}','${e.CONNECTTIME}')">修改</a>
 								<a href="javascript:void(0)"
-									onclick="click2('${e.EXPRESSID}')">更新</a>
+									onclick="click3('${e.EXPRESSID}')">更新</a>
 								<a href="#">删除</a></td>
 							</tr>
 						</c:forEach>

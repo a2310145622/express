@@ -50,6 +50,21 @@ public class ExpressDAOImpl implements IExpressDAO {
 		}
 		return express;
 	}
+	
+	@Override
+	public List<Map<String, Object>> equery(String eid) {
+		// TODO Auto-generated method stub
+		
+		String sql = "SELECT * FROM EXPRESS  WHERE EXPRESSID=?";
+		List<Map<String, Object>> express = null;
+		
+		try {
+			express = DBUtils.query(sql, eid);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return express;
+	}
 
 	@Override
 	public int add(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,

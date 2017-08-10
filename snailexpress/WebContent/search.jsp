@@ -153,9 +153,7 @@ function click1(){
 	
 	<div class="container">
 
-      <div class="page-header">
-        <h1>搜索结果</h1>
-      </div>
+      <div class="page-header"><h1>搜索结果</h1></div>
       	<%if(request.getAttribute("EXPRESS")!=null){%>
       	<h3>运单号<%=request.getAttribute("EXPRESSID")%></h3>
       	<div class="table-responsive">

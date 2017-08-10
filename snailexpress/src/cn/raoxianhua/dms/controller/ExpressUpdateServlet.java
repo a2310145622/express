@@ -51,7 +51,7 @@ public class ExpressUpdateServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String msg = "";
 		if (modify > 0) {
-			msg = "运单信息修改成功！";
+			msg = "运输信息修改成功！";
 			session.setAttribute("msg", msg);
 			// 1. 请求重定向
 			resp.sendRedirect("expressUpdate?EXPRESSID="+eid);
@@ -59,7 +59,7 @@ public class ExpressUpdateServlet extends HttpServlet {
 			// RequestDispatcher dispatcher = ç.getRequestDispatcher("index.html");
 			// dispatcher.forward(request, response);
 		} else {
-			msg = "运单信息修改失败！";
+			msg = "运输信息修改失败！";
 			session.setAttribute("msg", msg);
 			resp.sendRedirect(req.getHeader("Referer"));
 		}

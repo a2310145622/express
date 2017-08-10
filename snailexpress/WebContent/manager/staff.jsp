@@ -56,7 +56,21 @@
 }
 </style>
 <script type="text/javascript">
-function click1(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
+
+function check(){
+	var eid = document.getElementById("eid");
+	if(eid.value.length!=8){
+		alert("请输入8位运单号！");
+		return false;
+	}else
+		return true;
+}
+function click1(){
+	if(check())
+		document.search.submit();
+}
+
+function click2(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
 	window.location.href="staffmodify.jsp?STAFFID="+STAFFID+"&STAFFNAME="+STAFFNAME
 	+"&STAFFNUMBER="+STAFFNUMBER+"&LINKPHONE="+LINKPHONE+"&STAFFPASSWORD="+STAFFPASSWORD
 	+"&REMARK="+REMARK; 
@@ -143,6 +157,13 @@ function click1(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
 					}
 				%>
 			</ul>
+			<%if (session.getAttribute("sid_in_session") != null) {%>
+			<form class="navbar-form navbar-right" name="search" action="doESearch" method="get" onsubmit="return check()">
+				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入8位运单号" maxlength="8">
+				<img src="../assets/image/kuaididanhaochaxun.png"style="width:30px;height:30px"
+				     onclick="click1()">
+			</form>
+			<%}%>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
@@ -206,7 +227,7 @@ function click1(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
 							<td class="active">${s.STAFFPASSWORD}</td>
 							<td class="success">${s.REMARK}</td>
 							<td class="danger"><a href="javascript:void(0)"
-									onclick="click1('${s.STAFFID}','${s.STAFFNAME}','${s.STAFFNUMBER}'
+									onclick="click2('${s.STAFFID}','${s.STAFFNAME}','${s.STAFFNUMBER}'
 									,'${s.LINKPHONE}','${s.STAFFPASSWORD}','${s.REMARK}')">修改</a></td>
 						</tr>
 					</c:forEach>
