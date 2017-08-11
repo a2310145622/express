@@ -212,7 +212,7 @@ function click3(EXPRESSID){
 					<li><a href="add.jsp">添加新的管理员账号</a></li>
 				</ul>
 			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-2 main">
 	          <h1 class="page-header">快递单管理</h1>
 	
 	          <h2 class="sub-header">数据列表</h2>

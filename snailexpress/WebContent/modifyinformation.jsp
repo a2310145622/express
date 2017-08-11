@@ -203,7 +203,7 @@ function click1(){
 			<h2 class="form-signin-heading">修改个人信息</h2>
 			<label for="inputcid">账号</label>
 			<input type="text" id="inputcid" name="cid" class="form-control"
-                   placeholder="账号" required="" value="<%=request.getAttribute("cid")%>">
+                   placeholder="账号" required="" readonly value="<%=request.getAttribute("cid")%>">
             <label for="inputcname">姓名</label>
             <input type="text" id="inputcname" name="cname" class="form-control"
                    placeholder="姓名" required="" value="<%=request.getAttribute("cname")%>">
