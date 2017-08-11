@@ -82,6 +82,10 @@ function click2(EXPRESSID,CLIENTID,COLLECTCLIENTNAME,COLLECTPHONE,SENDADDRESS,
 function click3(EXPRESSID){
 	window.location.href="expressUpdate?EXPRESSID="+EXPRESSID; 
 }
+
+function click3(EXPRESSID){
+	window.location.href="doExpressDelete?EXPRESSID="+EXPRESSID; 
+}
 </script>
 </head>
 <%
@@ -145,7 +149,6 @@ function click3(EXPRESSID){
 				<%
 					if (session.getAttribute("sid_in_session") != null) {
 				%>
-				<li><a href="add.jsp">添加新的管理员账号</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false"><%=session.getAttribute("sid_in_session")%><span
@@ -254,7 +257,8 @@ function click3(EXPRESSID){
 									,'${e.SIGNFOR}','${e.DELIVERYWAYID}','${e.CONNECTTIME}')">修改</a>
 								<a href="javascript:void(0)"
 									onclick="click3('${e.EXPRESSID}')">更新</a>
-								<a href="#">删除</a></td>
+								<a href="javascript:void(0)"
+									onclick="click4('${e.EXPRESSID}')">删除</a></td>
 							</tr>
 						</c:forEach>
 	              </tbody>

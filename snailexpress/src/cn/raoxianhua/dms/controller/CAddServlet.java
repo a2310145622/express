@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import cn.raoxianhua.dms.service.IExpressService;
 import cn.raoxianhua.dms.service.impl.ExpressServiceImpl;
+import cn.raoxianhua.dms.vo.Express;
 
 /**
  * @author raoxianhua
@@ -54,11 +55,13 @@ public class CAddServlet extends HttpServlet {
 		String esphone = req.getParameter("esphone");
 		String ehaddress = req.getParameter("ehaddress");
 		
-		int add = ExpressService.doAdd(cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
+		Express add = ExpressService.doAdd(cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
 		
 		String addmsg = "";
-		if(add==2) {
-			addmsg = "订单提交成功！";
+		System.out.println(add);
+		System.out.println(add.getEid());
+		if(add.getEid()!=null&&add.getEid()!="") {
+			addmsg = "订单提交成功！您的运单号为<font color=red>"+add.getEid()+"</font>";
 		}else 
 			addmsg = "订单提交失败！";
 		

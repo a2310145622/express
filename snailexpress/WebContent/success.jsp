@@ -159,7 +159,7 @@ function click1(){
       <center>
       <%if(session.getAttribute("addmsg")!=null&&session.getAttribute("addmsg")!=""){%>
 		<h3><%=session.getAttribute("addmsg")%></h3>
-		<%session.setAttribute("addmsg", "");}%>
+		<%session.removeAttribute("addmsg");}%>
 		</center>
     </div> <!-- /container -->
     

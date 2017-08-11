@@ -50,12 +50,12 @@ public class ExpressServiceImpl implements IExpressService {
 	}
 
 	@Override
-	public int doAdd(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
+	public Express doAdd(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
 			String esphone, String ehaddress) {
 		// TODO Auto-generated method stub
 		
-		int add = expressDao.add(cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
-		return add;
+		Express express = expressDao.add(cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
+		return express;
 	}
 
 	@Override
@@ -74,6 +74,14 @@ public class ExpressServiceImpl implements IExpressService {
 		
 		int update = expressDao.update(eid,edetails);
 		return update;
+	}
+
+	@Override
+	public int doDelete(String eid) {
+		// TODO Auto-generated method stub
+		
+		int delete = expressDao.delete(eid);
+		return delete;
 	}
 
 }

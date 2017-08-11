@@ -21,12 +21,14 @@ public interface IExpressService {
 	
 	List<Map<String, Object>> doESearch(String eid);
 	
-	int doAdd(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
+	Express doAdd(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
 			String esphone, String ehaddress);
 
 	int doModify(String eid,String eccname, String ecphone, String esaddress, String escname, String esphone, String ehaddress,
 			String eremark, String esignfor, String edid);
 
 	int doUpdate(String eid, String edetails);
+
+	int doDelete(String eid);
 
 }

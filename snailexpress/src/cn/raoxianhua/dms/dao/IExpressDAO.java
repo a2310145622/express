@@ -21,12 +21,14 @@ public interface IExpressDAO {
 	
 	List<Map<String, Object>> equery(String eid);
 
-	int add(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
+	Express add(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
 			String esphone, String ehaddress);
 
 	int modify(String eid,String eccname, String ecphone, String esaddress, String escname, String esphone, String ehaddress,
 			String eremark, String esignfor, String edid);
 
 	int update(String eid, String edetails);
+
+	int delete(String eid);
 
 }
