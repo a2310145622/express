@@ -74,13 +74,13 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 	public CommonPage<Map<String, Object>> queryPage(int currentPage) {
 		// TODO Auto-generated method stub
 		
-		CommonPage<Map<String, Object>> data = new CommonPage<>(currentPage, 2);
+		CommonPage<Map<String, Object>> data = new CommonPage<>(currentPage, 3);
 
 		String countSql = "SELECT count(1) FROM CLIENT WHERE 1=1";
 		String dataSql = "SELECT * " +
 						 "  FROM (SELECT ROWNUM rn, c.CLIENTID, c.CLIENTNAME, c.LINKPHONE, "
 						 + "c.CLIENTPASSWORD, c.CLIENTEMAIL FROM CLIENT c " +
-						 "         WHERE ROWNUM <= ? * ?) t" +
+						 "         WHERE ROWNUM <= ? * ? ORDER BY c.CLIENTID) t" +
 						 " WHERE rn > ? * (?-1)";
 
 		data.setCountSql(countSql);

@@ -74,13 +74,13 @@ public class StaffDAOImpl implements IStaffDAO {
 	public CommonPage<Map<String, Object>> queryPage(int currentPage) {
 		// TODO Auto-generated method stub
 		
-		CommonPage<Map<String, Object>> data = new CommonPage<>(currentPage, 2);
+		CommonPage<Map<String, Object>> data = new CommonPage<>(currentPage, 5);
 
 		String countSql = "SELECT count(1) FROM STAFF WHERE 1=1";
 		String dataSql = "SELECT * " +
 						 "  FROM (SELECT ROWNUM rn, s.STAFFID, s.STAFFNAME, s.STAFFNUMBER, "
 						 + "s.LINKPHONE, s.STAFFPASSWORD,s.REMARK FROM STAFF s " +
-						 "         WHERE ROWNUM <= ? * ?) t" +
+						 "         WHERE ROWNUM <= ? * ? ORDER BY STAFFID) t" +
 						 " WHERE rn > ? * (?-1)";
 
 		data.setCountSql(countSql);
