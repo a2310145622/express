@@ -53,15 +53,15 @@ public class SModifyServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String msg = "";
 		if (modify > 0) {
-			msg = "用户信息修改成功！";
+			msg = "管理员信息修改成功！";
 			session.setAttribute("msg", msg);
 			// 1. 请求重定向
-			resp.sendRedirect("queryStaffList");
+			resp.sendRedirect("settings");
 			// 2. 请求转发
 			// RequestDispatcher dispatcher = ç.getRequestDispatcher("index.html");
 			// dispatcher.forward(request, response);
 		} else {
-			msg = "用户信息修改失败！";
+			msg = "管理员信息修改失败！";
 			session.setAttribute("msg", msg);
 			resp.sendRedirect(req.getHeader("Referer"));
 		}
