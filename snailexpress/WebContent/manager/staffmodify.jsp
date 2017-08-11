@@ -201,7 +201,7 @@ function click1(){
 			<h2 class="form-signin-heading">管理员信息修改</h2>
 			<label for="inputsid">账号</label>
 			<input type="text" id="inputsid" name="sid" class="form-control"
-                   placeholder="账号" required="" readonly value="<%=request.getParameter("STAFFID")%>">
+                   placeholder="账号" required="" readonly value="<%=request.getParameter("STAFFCODE")%>">
             <label for="inputspwd">密码</label>
 			<input type="text" id="inputspwd" name="spwd" class="form-control"
                    placeholder="密码" required="" autofocus=""  value="<%=request.getParameter("STAFFNAME")%>">

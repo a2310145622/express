@@ -70,8 +70,8 @@ function click1(){
 		document.search.submit();
 }
 
-function click2(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
-	window.location.href="staffmodify.jsp?STAFFID="+STAFFID+"&STAFFNAME="+STAFFNAME
+function click2(STAFFCODE,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
+	window.location.href="staffmodify.jsp?STAFFCODE="+STAFFCODE+"&STAFFNAME="+STAFFNAME
 	+"&STAFFNUMBER="+STAFFNUMBER+"&LINKPHONE="+LINKPHONE+"&STAFFPASSWORD="+STAFFPASSWORD
 	+"&REMARK="+REMARK; 
 }
@@ -219,14 +219,14 @@ function click2(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
               <tbody>
                 <c:forEach items="${requestScope.staffs.result}" var="s">
 						<tr>
-							<td class="active">${s.STAFFID}</td>
+							<td class="active">${s.STAFFCODE}</td>
 							<td class="success">${s.STAFFNAME}</td>
 							<td class="warning">${s.STAFFNUMBER}</td>
 							<td class="danger">${s.LINKPHONE}</td>
 							<td class="active">${s.STAFFPASSWORD}</td>
 							<td class="success">${s.REMARK}</td>
 							<td class="danger"><a href="javascript:void(0)"
-									onclick="click2('${s.STAFFID}','${s.STAFFNAME}','${s.STAFFNUMBER}'
+									onclick="click2('${s.STAFFCODE}','${s.STAFFNAME}','${s.STAFFNUMBER}'
 									,'${s.LINKPHONE}','${s.STAFFPASSWORD}','${s.REMARK}')">修改</a></td>
 						</tr>
 					</c:forEach>

@@ -25,12 +25,12 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 	public Client querySingle(String cid) {
 		// TODO Auto-generated method stub
 
-		String sql = "SELECT * FROM CLIENT WHERE CLIENTID=?";
+		String sql = "SELECT * FROM CLIENT WHERE CLIENTCODE=?";
 		Map<String, Object> user = DBUtils.querySingle(sql, cid);
 
 		Client client = new Client();
 		try {
-			client.setCid(user.get("CLIENTID").toString());
+			client.setCid(user.get("CLIENTCODE").toString());
 			client.setCpwd(user.get("CLIENTPASSWORD").toString());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -42,8 +42,8 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 	public int register(String cid, String cpwd, String cname, String clphone, String cemail) {
 		// TODO Auto-generated method stub
 		
-		String sql = "INSERT INTO CLIENT (CLIENTID, CLIENTNAME, LINKPHONE, "
-				+ "CLIENTPASSWORD,CLIENTEMAIL) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO CLIENT (CLIENTID, CLIENTCODE, CLIENTNAME, LINKPHONE, "
+				+ "CLIENTPASSWORD,CLIENTEMAIL) VALUES (seq_client.nextval,?,?,?,?,?)";
 
 		int register = 0;
 		try {
@@ -59,7 +59,7 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 		// TODO Auto-generated method stub
 
 		String sql ="UPDATE CLIENT SET CLIENTNAME=?,LINKPHONE=?,"
-				+ "CLIENTPASSWORD=?,CLIENTEMAIL=? WHERE CLIENTID=?";
+				+ "CLIENTPASSWORD=?,CLIENTEMAIL=? WHERE CLIENTCODE=?";
 
 		int modify = 0;
 		try {
@@ -78,7 +78,7 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 
 		String countSql = "SELECT count(1) FROM CLIENT WHERE 1=1";
 		String dataSql = "SELECT * " +
-						 "  FROM (SELECT ROWNUM rn, c.CLIENTID, c.CLIENTNAME, c.LINKPHONE, "
+						 "  FROM (SELECT ROWNUM rn, c.CLIENTCODE, c.CLIENTNAME, c.LINKPHONE, "
 						 + "c.CLIENTPASSWORD, c.CLIENTEMAIL FROM CLIENT c " +
 						 "         WHERE ROWNUM <= ? * ? ORDER BY c.CLIENTID) t" +
 						 " WHERE rn > ? * (?-1)";
@@ -92,12 +92,12 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 	public Client query(String cid) {
 		// TODO Auto-generated method stub
 		
-		String sql = "SELECT * FROM CLIENT WHERE CLIENTID=?";
+		String sql = "SELECT * FROM CLIENT WHERE CLIENTCODE=?";
 		Map<String, Object> user = DBUtils.querySingle(sql, cid);
 
 		Client client = new Client();
 		try {
-			client.setCid(user.get("CLIENTID").toString());
+			client.setCid(user.get("CLIENTCODE").toString());
 			client.setCname(user.get("CLIENTNAME").toString());
 			client.setClphone(user.get("LINKPHONE").toString());
 			client.setCemail(user.get("CLIENTEMAIL").toString());
@@ -112,7 +112,7 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 		// TODO Auto-generated method stub
 		
 		String sql ="UPDATE CLIENT SET CLIENTNAME=?,LINKPHONE=?,"
-				+ "CLIENTEMAIL=? WHERE CLIENTID=?";
+				+ "CLIENTEMAIL=? WHERE CLIENTCODE=?";
 
 		int modifyinfo = 0;
 		try {
@@ -127,7 +127,7 @@ public class ClientDAOImpl implements cn.raoxianhua.dms.dao.IClientDAO {
 	public int modifypwd(String cid, String cpwd, String ncpwd) {
 		// TODO Auto-generated method stub
 		
-		String sql ="UPDATE CLIENT SET CLIENTPASSWORD=? WHERE CLIENTID=? and CLIENTPASSWORD=?";
+		String sql ="UPDATE CLIENT SET CLIENTPASSWORD=? WHERE CLIENTCODE=? and CLIENTPASSWORD=?";
 
 		int modifypwd = 0;
 		try {

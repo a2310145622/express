@@ -70,9 +70,9 @@ function click1(){
 		document.search.submit();
 }
 
-function click2(CLIENTID,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
+function click2(CLIENTCODE,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
 	//session.setAttribute("CLIENTID",CLIENTID);
-	window.location.href="clientmodify.jsp?CLIENTID="+CLIENTID+"&CLIENTNAME="+CLIENTNAME
+	window.location.href="clientmodify.jsp?CLIENTCODE="+CLIENTCODE+"&CLIENTNAME="+CLIENTNAME
 	+"&LINKPHONE="+LINKPHONE+"&CLIENTPASSWORD="+CLIENTPASSWORD+"&CLIENTEMAIL="+CLIENTEMAIL; 
 	/* var form = $("<form method='post'></form>");
 	form.attr({"action":"doClientShow"});
@@ -227,13 +227,13 @@ function click2(CLIENTID,CLIENTNAME,LINKPHONE,CLIENTPASSWORD,CLIENTEMAIL){
 						<tbody>
 							<c:forEach items="${requestScope.clients.result}" var="c">
 								<tr>
-									<td class="active">${c.CLIENTID}</td>
+									<td class="active">${c.CLIENTCODE}</td>
 									<td class="success">${c.CLIENTNAME}</td>
 									<td class="warning">${c.LINKPHONE}</td>
 									<td class="danger">${c.CLIENTPASSWORD}</td>
 									<td class="active">${c.CLIENTEMAIL}</td>
 									<td class="danger"><a href="javascript:void(0)"
-									onclick="click2('${c.CLIENTID}','${c.CLIENTNAME}','${c.LINKPHONE}'
+									onclick="click2('${c.CLIENTCODE}','${c.CLIENTNAME}','${c.LINKPHONE}'
 									,'${c.CLIENTPASSWORD}','${c.CLIENTEMAIL}')">修改</a></td>
 								</tr>
 							</c:forEach>

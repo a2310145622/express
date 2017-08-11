@@ -62,7 +62,7 @@ if (session.getAttribute("cid_in_session") != null) {
 var pwd;
 var cpwd;
 
-function check(cpwd) {
+function check1(cpwd) {
 	var xmlhttp;
 	if (window.XMLHttpRequest)
 	{
@@ -245,7 +245,7 @@ function click1(){
 			<h2 class="form-signin-heading">修改密码</h2>
 			<label for="inputcpwd" class="sr-only">原密码</label>
 			<input type="password" id="inputcpwd" name="cpwd" class="form-control" 
-			       placeholder="原密码" required="" autofocus="" onchange="check(this.value)">
+			       placeholder="原密码" required="" autofocus="" onchange="check1(this.value)">
 			<span id="warning1"></span>
 			<label for="inputncpwd" class="sr-only">输入新密码</label>
 			<input type="password" id="inputncpwd" name="ncpwd" class="form-control"

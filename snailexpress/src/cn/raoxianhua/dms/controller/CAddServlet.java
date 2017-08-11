@@ -58,8 +58,6 @@ public class CAddServlet extends HttpServlet {
 		Express add = ExpressService.doAdd(cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
 		
 		String addmsg = "";
-		System.out.println(add);
-		System.out.println(add.getEid());
 		if(add.getEid()!=null&&add.getEid()!="") {
 			addmsg = "订单提交成功！您的运单号为<font color=red>"+add.getEid()+"</font>";
 		}else 

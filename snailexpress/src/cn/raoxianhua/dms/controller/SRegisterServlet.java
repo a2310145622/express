@@ -57,7 +57,7 @@ public class SRegisterServlet extends HttpServlet {
 			// RequestDispatcher dispatcher = ç.getRequestDispatcher("index.html");
 			// dispatcher.forward(request, response);
 		} else {
-			msg = "注册失败！";
+			msg = "添加管理员账号失败！";
 			session.setAttribute("msg", msg);
 			resp.sendRedirect("add.jsp");
 		}

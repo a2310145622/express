@@ -49,7 +49,7 @@
 var pwd;
 var cpwd;
 
-function check(cid) {
+function check1(cid) {
 	var xmlhttp;
 	if (window.XMLHttpRequest)
 	{
@@ -195,7 +195,7 @@ function click1(){
 			<h2 class="form-signin-heading">注册</h2>
 			<label for="inputcid" class="sr-only">账号</label>
 			<input type="text" id="inputcid" name="cid" class="form-control" 
-			       placeholder="账号" required="" autofocus="" onchange="check(this.value)">
+			       placeholder="账号" required="" autofocus="" onchange="check1(this.value)">
 			<span id="warning1"></span>
 			<label for="inputcpwd" class="sr-only">输入密码</label>
 			<input type="password" id="inputcpwd" name="cpwd" class="form-control"

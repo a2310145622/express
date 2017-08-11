@@ -25,12 +25,12 @@ public class StaffDAOImpl implements IStaffDAO {
 	public Staff querySingle(String sid) {
 		// TODO Auto-generated method stub
 		
-		String sql = "SELECT * FROM STAFF WHERE STAFFID=?";
+		String sql = "SELECT * FROM STAFF WHERE STAFFCODE=?";
 		Map<String, Object> user = DBUtils.querySingle(sql, sid);
 
 		Staff staff = new Staff();
 		try {
-			staff.setSid(user.get("STAFFID").toString());
+			staff.setSid(user.get("STAFFCODE").toString());
 			staff.setSpwd(user.get("STAFFPASSWORD").toString());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -42,8 +42,8 @@ public class StaffDAOImpl implements IStaffDAO {
 	public int register(String sid, String spwd, String sname, String snumber, String slphone, String sremark) {
 		// TODO Auto-generated method stub
 
-		String sql = "INSERT INTO STAFF (STAFFID, STAFFNAME, STAFFNUMBER, "
-				+ "LINKPHONE,STAFFPASSWORD,REMARK) VALUES (?, ?, ?, ?,?,?)";
+		String sql = "INSERT INTO STAFF (STAFFID, STAFFCODE, STAFFNAME, STAFFNUMBER, "
+				+ "LINKPHONE,STAFFPASSWORD,REMARK) VALUES (seq_staff.nextval, ?, ?, ?, ?,?,?)";
 
 		int register = 0;
 		try {
@@ -59,7 +59,7 @@ public class StaffDAOImpl implements IStaffDAO {
 		// TODO Auto-generated method stub
 		
 		String sql ="UPDATE STAFF SET STAFFNAME=?,STAFFNUMBER=?,"
-				+ "LINKPHONE=?,STAFFPASSWORD=?,REMARK=? WHERE STAFFID=?";
+				+ "LINKPHONE=?,STAFFPASSWORD=?,REMARK=? WHERE STAFFCODE=?";
 
 		int modify = 0;
 		try {
@@ -74,11 +74,11 @@ public class StaffDAOImpl implements IStaffDAO {
 	public CommonPage<Map<String, Object>> queryPage(int currentPage) {
 		// TODO Auto-generated method stub
 		
-		CommonPage<Map<String, Object>> data = new CommonPage<>(currentPage, 5);
+		CommonPage<Map<String, Object>> data = new CommonPage<>(currentPage, 3);
 
 		String countSql = "SELECT count(1) FROM STAFF WHERE 1=1";
 		String dataSql = "SELECT * " +
-						 "  FROM (SELECT ROWNUM rn, s.STAFFID, s.STAFFNAME, s.STAFFNUMBER, "
+						 "  FROM (SELECT ROWNUM rn, s.STAFFCODE, s.STAFFNAME, s.STAFFNUMBER, "
 						 + "s.LINKPHONE, s.STAFFPASSWORD,s.REMARK FROM STAFF s " +
 						 "         WHERE ROWNUM <= ? * ? ORDER BY STAFFID) t" +
 						 " WHERE rn > ? * (?-1)";
@@ -92,12 +92,12 @@ public class StaffDAOImpl implements IStaffDAO {
 	public Staff query(String sid) {
 		// TODO Auto-generated method stub
 		
-		String sql = "SELECT * FROM STAFF WHERE STAFFID=?";
+		String sql = "SELECT * FROM STAFF WHERE STAFFCODE=?";
 		Map<String, Object> user = DBUtils.querySingle(sql, sid);
 
 		Staff staff = new Staff();
 		try {
-			staff.setSid(user.get("STAFFID").toString());
+			staff.setSid(user.get("STAFFCODE").toString());
 			staff.setSpwd(user.get("STAFFPASSWORD").toString());
 			staff.setSname(user.get("STAFFNAME").toString());
 			staff.setSnumber(user.get("STAFFNUMBER").toString());
