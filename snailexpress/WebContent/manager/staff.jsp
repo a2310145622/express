@@ -138,7 +138,6 @@ function click2(STAFFID,STAFFNAME,STAFFNUMBER,LINKPHONE,STAFFPASSWORD,REMARK){
 				<%
 					if (session.getAttribute("sid_in_session") != null) {
 				%>
-				<li><a href="add.jsp">添加新的管理员账号</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false"><%=session.getAttribute("sid_in_session")%><span
