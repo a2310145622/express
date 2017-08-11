@@ -83,7 +83,7 @@ function click3(EXPRESSID){
 	window.location.href="expressUpdate?EXPRESSID="+EXPRESSID; 
 }
 
-function click3(EXPRESSID){
+function click4(EXPRESSID){
 	window.location.href="doExpressDelete?EXPRESSID="+EXPRESSID; 
 }
 </script>
