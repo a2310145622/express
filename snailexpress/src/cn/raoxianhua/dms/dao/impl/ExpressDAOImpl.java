@@ -3,6 +3,7 @@
  */
 package cn.raoxianhua.dms.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +67,7 @@ public class ExpressDAOImpl implements IExpressDAO {
 		return express;
 	}
 
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "null", "unlikely-arg-type" })
 	@Override
 	public Express add(String cid, String eccname, String ecphone, String esaddress, String eremark, String escname,
 			String esphone, String ehaddress) {
@@ -83,11 +84,11 @@ public class ExpressDAOImpl implements IExpressDAO {
 		String sql3 = "select lpad(lpad(seq_express.currval,6,'0'),8,'se') from dual";
 		
 		int add = 0;
-		Map<String, Object> user = null;
 		Express express = new Express();
 		try {
-			user = DBUtils.querySingle(sql, cid);
-			cid = user.get("CLIENTID").toString();
+			Map<String, Object> user = DBUtils.querySingle(sql, cid);
+			if(!user.equals("")&&user!=null)
+				cid = user.get("CLIENTID").toString();
 			add = DBUtils.modify(sql1,cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
 			add = add + DBUtils.modify(sql2);
 			express.setEid((String) DBUtils.querySingleData(sql3));
