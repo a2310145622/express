@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import cn.raoxianhua.dms.service.IExpressService;
 import cn.raoxianhua.dms.service.impl.ExpressServiceImpl;
 import cn.raoxianhua.dms.vo.Express;
+import cn.raoxianhua.dms.utils.KdniaoTrackQueryAPI;
 
 /**
  * @author raoxianhua
@@ -44,8 +45,16 @@ public class CSearchServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		String eid=req.getParameter("eid");
+		String ShipperCode=req.getParameter("ShipperCode");
 		
-		List<Map<String, Object>> express = ExpressService.doSearch(eid);
+		List<Map<String, Object>> express =null;
+		if(ShipperCode=="") {
+			express =ExpressService.doSearch(eid);
+			System.out.println(ShipperCode);
+		}
+		else {
+			express = KdniaoTrackQueryAPI.Kdniao(ShipperCode, eid);
+		}
 		req.setAttribute("EXPRESSID", eid);
 		if(express.size()!=0) {
 			req.setAttribute("EXPRESS", express);

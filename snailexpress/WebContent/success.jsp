@@ -72,7 +72,7 @@ function check(){
 		return true;
 }
 function click1(){
-	if(check())
+	//if(check())
 		document.search.submit();
 }
 </script>
@@ -142,8 +142,28 @@ function click1(){
 					}
 				%>
 			</ul>
-			<form class="navbar-form navbar-right" name="search" action="doSearch" method="get" onsubmit="return check()">
-				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入8位运单号" maxlength="8">
+			<form class="navbar-form navbar-right" name="search" action="doSearch" method="get">
+				<select id="inputeshipperCode" class="form-control" name="ShipperCode" >
+			      <option value ="">蜗牛快递</option>
+	              <option value ="SF">顺丰快递</option>
+	              <option value ="HTKY">百世快递</option>
+	              <option value ="ZTO">中通快递</option>
+	              <option value ="STO">申通快递</option>
+	              <option value ="YTO">圆通快递</option>
+	              <option value ="YD">韵达快递</option>
+	              <option value ="YZPY">邮政平邮</option>
+	              <option value ="EMS">EMS</option>
+	              <option value ="HHTT">天天快递</option>
+	              <option value ="JD">京东快递</option>
+	              <option value ="QFKD">全峰快递</option>
+	              <option value ="GTO">国通快递</option>
+	              <option value ="UC">优速快递</option>
+	              <option value ="DBL">德邦快递</option>
+	              <option value ="FAST">快捷快递</option>
+	              <option value ="AMAZON">亚马逊</option>
+	              <option value ="ZJS">宅急送</option>
+	            </select>
+				<input id="eid" name="eid" type="text" class="form-control" placeholder="请输入运单号">
 				<img src="assets/image/kuaididanhaochaxun.png"style="width:30px;height:30px"
 				     onclick="click1()">
 			</form>
