@@ -72,6 +72,8 @@ public class ExpressDAOImpl implements IExpressDAO {
 			String esphone, String ehaddress) {
 		// TODO Auto-generated method stub
 		
+		String sql = "SELECT * FROM CLIENT WHERE CLIENTCODE=?";
+		
 		String sql1 = "INSERT INTO EXPRESS (EXPRESSID, CLIENTID, COLLECTCLIENTNAME, COLLECTPHONE,SENDADDRESS, "
 				+ "REMARK,SENDCLIENTNAME, SENDPHONE, HOMEADDRESS) VALUES" + 
 				"(lpad(lpad(seq_express.nextval,6,'0'),8,'se'), ?, ? , ?, ?, ?, ?, ?,?)";
@@ -81,8 +83,11 @@ public class ExpressDAOImpl implements IExpressDAO {
 		String sql3 = "select lpad(lpad(seq_express.currval,6,'0'),8,'se') from dual";
 		
 		int add = 0;
+		Map<String, Object> user = null;
 		Express express = new Express();
 		try {
+			user = DBUtils.querySingle(sql, cid);
+			cid = user.get("CLIENTID").toString();
 			add = DBUtils.modify(sql1,cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
 			add = add + DBUtils.modify(sql2);
 			express.setEid((String) DBUtils.querySingleData(sql3));
