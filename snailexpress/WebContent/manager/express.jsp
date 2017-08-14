@@ -221,7 +221,7 @@ function click4(EXPRESSID){
 	              <thead>
 	                <tr>
 	                  <th class="active">运单号</th>
-	                  <th class="success">用户账号</th>
+	                  <th class="success">用户账号ID</th>
 	                  <th class="warning">收件人姓名</th>
 	                  <th class="danger">收件人电话</th>
 	                  <th class="active">收货地址</th>

@@ -85,10 +85,15 @@ public class ExpressDAOImpl implements IExpressDAO {
 		
 		int add = 0;
 		Express express = new Express();
+		Map<String, Object> user = new HashMap<String, Object>();
 		try {
-			Map<String, Object> user = DBUtils.querySingle(sql, cid);
-			if(!user.equals("")&&user!=null)
-				cid = user.get("CLIENTID").toString();
+			try {
+				user = DBUtils.querySingle(sql, cid);
+				if(!user.equals("")&&user!=null)
+					cid = user.get("CLIENTID").toString();
+			}catch (Exception e) {
+
+			}
 			add = DBUtils.modify(sql1,cid,eccname,ecphone,esaddress,eremark,escname,esphone,ehaddress);
 			add = add + DBUtils.modify(sql2);
 			express.setEid((String) DBUtils.querySingleData(sql3));
