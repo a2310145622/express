@@ -50,7 +50,6 @@ public class CSearchServlet extends HttpServlet {
 		List<Map<String, Object>> express =null;
 		if(ShipperCode=="") {
 			express =ExpressService.doSearch(eid);
-			System.out.println(ShipperCode);
 		}
 		else {
 			express = KdniaoTrackQueryAPI.Kdniao(ShipperCode, eid);
